@@ -8,7 +8,7 @@ describe('#guess', () => {
         const game = new GuessingGame();
         game.setRange(0, 4048)
 
-        let result = game.guess();
+        let result = game.guess();  
         game.lower();
         result = game.guess();
         game.lower();
@@ -100,23 +100,23 @@ describe('#guess', () => {
         const game = new GuessingGame();
         game.setRange(0, 3678)
 
-        let result = game.guess();
-        game.lower();
-        result = game.guess();
-        game.greater();
-        result = game.guess();
-        game.lower();
-        result = game.guess();
-        game.lower();
-        result = game.guess();
-        game.lower();
-        result = game.guess();
-        game.greater();
-        result = game.guess();
-        game.lower();
-        result = game.guess();
-        game.lower();
-        result = game.guess();
+        let result = game.guess();   //1839 - сразу задать средний результат между 0 и 3678
+        game.lower();               // тут берём теперь от 0 и макс делаем 1839
+        result = game.guess();      // опять фиксируем середину 919(с округлением)
+        game.greater();             //повышаем наш мин от 919 до 1839
+        result = game.guess();      //получается середина от 919 и 1839  = 2758/2    1379
+        game.lower();               //сравнение с числом и меняем макс на 1379
+        result = game.guess();      // 919 и 1379 2298 / 2 1149
+        game.lower();               //919 и 1149 
+        result = game.guess();      //1034
+        game.lower();               //919 и 1034
+        result = game.guess();      //976
+        game.greater();             // 976 и 1034
+        result = game.guess();      //1005
+        game.lower();               //976 и 1005
+        result = game.guess();      //990
+        game.lower();               //976 и 990
+        result = game.guess();      //983
 
         expect(result).to.equal(number);
     });
